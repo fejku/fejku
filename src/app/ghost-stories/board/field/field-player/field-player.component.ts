@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { GhostStoriesService } from '../../../ghost-stories.service';
 
 @Component({
   selector: 'app-field-player',
@@ -9,7 +10,7 @@ export class FieldPlayerComponent implements OnInit {
   @Input() boardIndex: number;
   @Input() fieldIndex: number;
 
-  constructor() { }
+  constructor(private ghostStories: GhostStoriesService) { }
 
   ngOnInit() {
   }
