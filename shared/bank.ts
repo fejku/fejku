@@ -1,7 +1,7 @@
-import { Token } from './token';
+import { IToken } from './token';
 
-export interface Bank {
+export interface IBank {
   qiTokens: number;
-  jinJangTokens: Token[];
-  taoTokens: Token[];
+  jinJangTokens: IToken[];
+  taoTokens: IToken[];
 }

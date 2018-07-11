@@ -1,5 +1,5 @@
 import { BuddhaStatus } from './enums';
 
-export interface BuddhaFigure {
+export interface IBuddhaFigure {
   status: BuddhaStatus;
 }

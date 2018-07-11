@@ -1,32 +1,77 @@
-import { Token } from 'shared/token';
-import { BuddhaFigure } from 'shared/buddha-figure';
+import { IToken } from 'shared/token';
+import { IBuddhaFigure } from 'shared/buddha-figure';
 import { FourColor, FiveColor } from 'shared/enums';
+import { IPlayer } from 'shared/player';
 
-export class Player {
-  private qiTokens: number;
-  private jinJangToken: number;
-  private taoTokens: Token[];
-  private position: number;
-  private buddhaFigures: BuddhaFigure[];
+export class Player implements IPlayer {
+  private _qiTokens: number;
+  private _jinJangToken: number;
+  private _taoTokens: IToken[];
+  private _position: number;
+  private _buddhaFigures: IBuddhaFigure[];
 
-  constructor(private color: FourColor) {
-    this.qiTokens = 4;
-    this.jinJangToken = 1;
-    this.taoTokens = this.initTaoTokens();
-    this.position = 4;
+  constructor(private _color: FourColor) {
+    this._qiTokens = 4;
+    this._jinJangToken = 1;
+    this._taoTokens = this.initTaoTokens();
+    this._position = 4;
   }
 
-  private initTaoTokens(): Token[] {
+  get color(): FourColor {
+    return this._color;
+  }
+
+  get colorKey(): string {
+    return FourColor[this._color];
+  }
+
+  set color(color: FourColor) {
+    this._color = color;
+  }
+
+  get qiTokens(): number {
+    return this._qiTokens;
+  }
+
+  set qiTokens(qiTokens: number) {
+    this._qiTokens = qiTokens;
+  }
+
+  get jinJangToken(): number {
+    return this._jinJangToken;
+  }
+
+  set jinJangToken(jinJangToken: number) {
+    this._jinJangToken = jinJangToken;
+  }
+
+  get taoTokens(): IToken[] {
+    return this._taoTokens;
+  }
+
+  set taoTokens(taoTokens: IToken[]) {
+    this._taoTokens = taoTokens;
+  }
+
+  get position(): number {
+    return this._position;
+  }
+
+  set position(position: number) {
+    this._position = position;
+  }
+
+  get buddhaFigures(): IBuddhaFigure[] {
+    return this._buddhaFigures;
+  }
+
+  set buddhaFigures(buddhaFigures: IBuddhaFigure[]) {
+    this._buddhaFigures = buddhaFigures;
+  }
+
+  private initTaoTokens(): IToken[] {
     return [
-      {color: FiveColor[this.getColorKey()]}
+      { color: FiveColor[this.colorKey] }
     ];
-  }
-
-  public getColorValue(): number {
-    return this.color;
-  }
-
-  public getColorKey(): string {
-    return FourColor[this.color];
   }
 }

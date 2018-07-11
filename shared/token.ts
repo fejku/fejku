@@ -1,5 +1,5 @@
 import { FiveColor } from './enums';
 
-export interface Token {
+export interface IToken {
   color: FiveColor;
 }

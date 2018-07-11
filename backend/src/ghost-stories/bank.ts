@@ -1,10 +1,10 @@
-import { Bank as IBank } from 'shared/bank';
-import { Token } from 'shared/token';
+import { IBank } from 'shared/bank';
+import { IToken } from 'shared/token';
 
 export class Bank implements IBank {
   private _qiTokens: number;
-  private _jinJangTokens: Token[];
-  private _taoTokens: Token[];
+  private _jinJangTokens: IToken[];
+  private _taoTokens: IToken[];
 
   constructor() { }
 
@@ -16,11 +16,19 @@ export class Bank implements IBank {
     this._qiTokens = qiTokens;
   }
 
-  get jinJangTokens(): Token[] {
+  get jinJangTokens(): IToken[] {
     return this._jinJangTokens;
   }
 
-  get taoTokens(): Token[] {
+  set jinJangTokens(jinJangTokens: IToken[]) {
+    this.jinJangTokens = jinJangTokens;
+  }
+
+  get taoTokens(): IToken[] {
     return this._taoTokens;
+  }
+
+  set taoTokens(taoTokens: IToken[]) {
+    this.taoTokens = taoTokens;
   }
 }
