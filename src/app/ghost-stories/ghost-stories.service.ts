@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Board } from 'shared/board';
+import { Bank } from 'shared/bank';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GhostStoriesService {
+  private ghostStories: {board: Board, players: Players, bank: Bank};
   public board: Board[] = [];
 
   constructor() {

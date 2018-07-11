@@ -18,7 +18,7 @@ export class Player {
 
   private initTaoTokens(): Token[] {
     return [
-      {color: FiveColor[this.getColorKey()], amount: 1}
+      {color: FiveColor[this.getColorKey()]}
     ];
   }
 
