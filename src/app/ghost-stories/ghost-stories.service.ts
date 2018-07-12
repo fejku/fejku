@@ -6,7 +6,7 @@ import { IBank } from 'shared/bank';
   providedIn: 'root'
 })
 export class GhostStoriesService {
-  private ghostStories: {board: IBoard, players: Players, bank: IBank};
+  // private ghostStories: {board: IBoard, players: Players, bank: IBank};
   public board: IBoard[] = [];
 
   constructor() {

@@ -1,7 +1,7 @@
-import { IToken } from 'shared/token';
-import { IBuddhaFigure } from 'shared/buddha-figure';
-import { FourColor, FiveColor } from 'shared/enums';
-import { IPlayer } from 'shared/player';
+import { IToken } from '../../../../shared/token';
+import { IBuddhaFigure } from '../../../../shared/buddha-figure';
+import { FourColor, FiveColor } from '../../../../shared/enums';
+import { IPlayer } from '../../../../shared/player';
 
 export class Player implements IPlayer {
   private _qiTokens: number;
