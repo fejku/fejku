@@ -1,5 +1,5 @@
-import { IBank } from 'shared/bank';
-import { IToken } from 'shared/token';
+import { IBank } from 'shared/ghost-stories/bank';
+import { IToken } from 'shared/ghost-stories/token';
 
 export class Bank implements IBank {
   private _qiTokens: number;
