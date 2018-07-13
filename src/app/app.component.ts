@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { environment } from '../environments/environment';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  private socket;
+
+  constructor() {
+    this.socket = io(environment.ws_url);
+  }
+
+  startSocketIO() {
+    this.socket.emit('ghost start'); // , JSON.stringify(data));
+  }
 }
