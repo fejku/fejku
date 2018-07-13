@@ -1,7 +1,8 @@
-import { IToken } from '../../../../shared/ghost-stories/token';
-import { IBuddhaFigure } from '../../../../shared/ghost-stories/buddha-figure';
-import { FourColor, FiveColor } from '../../../../shared/ghost-stories/enums';
-import { IPlayer } from '../../../../shared/ghost-stories/player';
+import { IToken } from 'shared/token';
+import { IBuddhaFigure } from 'shared/buddha-figure';
+import { FourColor, FiveColor } from 'shared/enums';
+import { IPlayer } from 'shared/player';
+
 
 export class Player implements IPlayer {
   private _qiTokens: number;

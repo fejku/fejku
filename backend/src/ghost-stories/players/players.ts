@@ -1,4 +1,4 @@
-import { IPlayers } from 'shared/ghost-stories/players';
+import { IPlayers } from '../../../../shared/ghost-stories/players';
 import { Player } from './player';
 
 export class Players implements IPlayers {

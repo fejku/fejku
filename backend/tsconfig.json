@@ -3,7 +3,11 @@
     "target": "es6",
     "module": "commonjs",
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": "../",
+    "paths": {
+      "shared/*": [ "shared/ghost-stories/*" ]
+    }
   },
   "files": [
     "../node_modules/@types/node/index.d.ts"
