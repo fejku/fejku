@@ -1,19 +1,20 @@
-import { IToken } from 'shared/token';
-import { IBuddhaFigure } from 'shared/buddha-figure';
-import { FourColor, FiveColor } from 'shared/enums';
-import { IPlayer } from 'shared/player';
+import { IBuddhaFigure } from '../../../../shared/ghost-stories/buddha-figure';
+import { FourColor, FiveColor } from '../../../../shared/ghost-stories/enums';
+import { IPlayer } from '../../../../shared/ghost-stories/player';
+import { IJinJangToken } from '../../../../shared/ghost-stories/jin-jang-token';
+import { ITaoToken } from '../../../../shared/ghost-stories/tao-token';
 
 
 export class Player implements IPlayer {
   private _qiTokens: number;
-  private _jinJangToken: number;
-  private _taoTokens: IToken[];
+  private _jinJangToken: IJinJangToken;
+  private _taoTokens: ITaoToken[];
   private _position: number;
   private _buddhaFigures: IBuddhaFigure[];
 
   constructor(private _color: FourColor) {
     this._qiTokens = 4;
-    this._jinJangToken = 1;
+    this._jinJangToken = { color: _color };
     this._taoTokens = this.initTaoTokens();
     this._position = 4;
   }
@@ -38,19 +39,19 @@ export class Player implements IPlayer {
     this._qiTokens = qiTokens;
   }
 
-  get jinJangToken(): number {
+  get jinJangToken(): IJinJangToken {
     return this._jinJangToken;
   }
 
-  set jinJangToken(jinJangToken: number) {
+  set jinJangToken(jinJangToken: IJinJangToken) {
     this._jinJangToken = jinJangToken;
   }
 
-  get taoTokens(): IToken[] {
+  get taoTokens(): ITaoToken[] {
     return this._taoTokens;
   }
 
-  set taoTokens(taoTokens: IToken[]) {
+  set taoTokens(taoTokens: ITaoToken[]) {
     this._taoTokens = taoTokens;
   }
 
@@ -70,7 +71,7 @@ export class Player implements IPlayer {
     this._buddhaFigures = buddhaFigures;
   }
 
-  private initTaoTokens(): IToken[] {
+  private initTaoTokens(): ITaoToken[] {
     return [
       { color: FiveColor[this.colorKey] }
     ];

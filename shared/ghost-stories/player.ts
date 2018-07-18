@@ -1,12 +1,13 @@
 import { FourColor } from './enums';
-import { IToken } from './token';
 import { IBuddhaFigure } from './buddha-figure';
+import { IJinJangToken } from './jin-jang-token';
+import { ITaoToken } from './tao-token';
 
 export interface IPlayer {
   color: FourColor;
   qiTokens: number;
-  jinJangToken: number;
-  taoTokens: IToken[];
+  jinJangToken: IJinJangToken;
+  taoTokens: ITaoToken[];
   position: number;
   buddhaFigures: IBuddhaFigure[];
 }

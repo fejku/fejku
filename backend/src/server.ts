@@ -1,6 +1,9 @@
 import { createServer, Server as HttpServer } from 'http';
 import * as express from 'express';
 import * as socketIo from 'socket.io';
+import * as mongoose from 'mongoose';
+import * as bodyParser from 'body-parser';
+import { CrawlerController } from './crawler/crawler';
 
 export class Server {
   public static readonly PORT: number = 3000;
@@ -15,10 +18,44 @@ export class Server {
     this.server = createServer(this.app);
     this.io = socketIo(this.server);
 
+    this.configure();
+
     this.listen();
   }
 
+  private configure(): void {
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({extended: false}));
+
+    // Cors
+    this.app.use(function(req, res, next) {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      next();
+    });
+  }
+
   private listen(): void {
+    this.setMongoose();
+    this.setSocketIo();
+    this.setRoutes();
+
+    this.server.listen(this.port, () => {
+        console.log('Running server on port %s', this.port);
+    });
+  }
+
+  private setMongoose() {
+    mongoose.connect('mongodb://localhost/fejku')
+      .then(() => {
+        console.log('Connected to DB!');
+      })
+      .catch(() => {
+        console.log('Failed connecting to DB!');
+      });
+  }
+
+  private setSocketIo() {
     this.io.on('connection', (socket: socketIo.Socket) => {
       console.log('Connected client on port %s.', this.port);
       // socket.on('message', (m: Message) => {
@@ -34,10 +71,10 @@ export class Server {
           console.log('Client disconnected');
       });
     });
+  }
 
-    this.server.listen(this.port, () => {
-        console.log('Running server on port %s', this.port);
-    });
+  private setRoutes() {
+    this.app.use('/crawler', CrawlerController);
   }
 
   public getApp(): express.Application {

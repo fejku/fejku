@@ -1,7 +1,8 @@
-import { IToken } from './token';
+import { IJinJangToken } from './jin-jang-token';
+import { ITaoToken } from './tao-token';
 
 export interface IBank {
   qiTokens: number;
-  jinJangTokens: IToken[];
-  taoTokens: IToken[];
+  jinJangTokens: IJinJangToken[];
+  taoTokens: ITaoToken[];
 }

@@ -1,11 +1,19 @@
 export enum FourColor {
-  YELLOW, GREEN, BLUE, RED,
+  YELLOW = 'YELLOW',
+  GREEN = 'GREEN',
+  BLUE = 'BLUE',
+  RED = 'RED',
 }
 
 export enum FiveColor {
-  YELLOW, GREEN, BLUE, RED, BLACK,
+  YELLOW = 'YELLOW',
+  GREEN = 'GREEN',
+  BLUE = 'BLUE',
+  RED = 'RED',
+  BLACK = 'BLACK',
 }
 
 export enum BuddhaStatus {
-  ACTIVE, INACTIVE
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }

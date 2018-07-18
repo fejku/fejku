@@ -4,10 +4,10 @@
     "module": "commonjs",
     "outDir": "dist",
     "sourceMap": true,
-    "baseUrl": "../",
-    "paths": {
-      "shared/*": [ "shared/ghost-stories/*" ]
-    }
+    // "baseUrl": "../",
+    // "paths": {
+    //   "shared/*": [ "shared/ghost-stories/*" ]
+    // }
   },
   "files": [
     "../node_modules/@types/node/index.d.ts"
