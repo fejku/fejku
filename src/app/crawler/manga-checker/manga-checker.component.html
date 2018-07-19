@@ -3,11 +3,11 @@
   <form *ngIf="formularzWidoczny">
     <div class="form-group">
       <label>Nazwa</label>
-      <input type="text" class="form-control" name="name" [(ngModel)]="model.name">
+      <input type="text" class="form-control" name="name" [(ngModel)]="manga.name">
     </div>
     <div class="form-group">
       <label>Url</label>
-      <input type="text" class="form-control" name="url" [(ngModel)]="model.url">
+      <input type="text" class="form-control" name="url" [(ngModel)]="manga.url">
     </div>
     <button type="submit" class="btn btn-primary" (click)="addNewManga()">Dodaj</button>
   </form>

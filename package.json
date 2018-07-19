@@ -9,7 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "tsc": "(cd backend && tsc -w)",
-    "nodemon": "(cd backend/dist/backend/src && nodemon index.js)"
+    "nodemon": "(cd backend/dist/backend/src && nodemon index.js)",
+    "mongo-win": "C:\\\"Program Files\"\\MongoDB\\Server\\3.6\\bin\\mongod.exe --dbpath d:\\My\\mongo\\data\\db\\"
   },
   "private": true,
   "dependencies": {

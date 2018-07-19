@@ -17,6 +17,13 @@ export class MangaCheckerComponent implements OnInit {
   constructor(private service: MangaCheckerService) { }
 
   ngOnInit() {
+    this.manga = {
+      name: null,
+      url: null,
+      chapteAddedTime: null,
+      myActualChapterNumber: null,
+      newestChapterNumber: null
+    };
     this.service.getMangaList().subscribe((data: Manga[]) => {
       console.log('QWE', data);
       this.mangaList = data;
@@ -26,7 +33,7 @@ export class MangaCheckerComponent implements OnInit {
   addNewManga() {
     this.formularzWidoczny = false;
 
-    this.service.addManga()
+    this.service.addManga(this.manga);
   }
 
 }

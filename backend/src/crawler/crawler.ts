@@ -13,6 +13,22 @@ router.get('/', (req, res) => {
   });
 });
 
+router.post('/', (req, res) => {
+  const manga = new Manga({
+    name: req.body.name,
+    url: req.body.url,
+    newestChapterNumber: req.body.newestChapterNumber,
+    chapteAddedTime: req.body.chapteAddedTime,
+    myActualChapterNumber: req.body.myActualChapterNumber,
+  });
+  manga.save().then(createdManga => {
+    res.status(201).json({
+      status: true,
+      mangaId: createdManga._id,
+    });
+  });
+});
+
 // router.use('/', (req: Request, res: Response) => {
 //   console.log(req.body);
 //   res.send('test');
