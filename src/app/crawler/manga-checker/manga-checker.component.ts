@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MangaCheckerService } from './manga-checker.service';
 import { Manga } from './manga.model';
 
@@ -18,22 +17,35 @@ export class MangaCheckerComponent implements OnInit {
 
   ngOnInit() {
     this.manga = {
+      _id: null,
       name: null,
       url: null,
       chapteAddedTime: null,
       myActualChapterNumber: null,
       newestChapterNumber: null
     };
-    this.service.getMangaList().subscribe((data: Manga[]) => {
-      console.log('QWE', data);
-      this.mangaList = data;
-    });
+
+    this.getMangaList();
   }
 
   addNewManga() {
     this.formularzWidoczny = false;
 
-    this.service.addManga(this.manga);
+    this.service.addManga(this.manga).subscribe(() => {
+      this.getMangaList();
+    });
+  }
+
+  getMangaList() {
+    this.service.getMangaList().subscribe((data: Manga[]) => {
+      this.mangaList = data;
+    });
+  }
+
+  onUsun(mangaId: string) {
+    this.service.removeManga(mangaId).subscribe(() => {
+      this.getMangaList();
+    });
   }
 
 }

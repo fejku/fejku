@@ -6,9 +6,9 @@ export class Check {
     return data;
   }
 
-  public static parseMangaDexSite($): {} {
+  public static parseMangaDexSite($, language: string = 'English'): {chapter: string, addedTime: string} {
     return $('.tab-content tbody tr')
-      .filter((i, el) => $(el).children('td').eq(3).children().attr('title') === 'English')
+      .filter((i, el) => $(el).children('td').eq(3).children().attr('title') === language)
       .map((i, el) =>
         ({
           chapter: $(el).children('td').eq(1).children().data('chapter-num'),

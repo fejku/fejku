@@ -24,12 +24,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let manga of mangaList">
+    <tr *ngFor="let manga of mangaList; let i=index">
       <td>{{manga.name}}</td>
       <td>{{manga.newestChapterNumber}}</td>
       <td>{{manga.myActualChapterNumber}}</td>
       <td><button>Odśwież</button></td>
       <td><button>Edytuj</button></td>
+      <td><button (click)="onUsun(manga._id)">Usuń</button></td>
     </tr>
   </tbody>
 </table>

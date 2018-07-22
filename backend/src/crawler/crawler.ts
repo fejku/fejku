@@ -2,14 +2,24 @@ import { Router, Request, Response } from 'express';
 import * as cheerio from 'cheerio';
 
 import { Check } from './check';
-import { Manga } from './models/manga';
+
 import { send } from 'q';
+import { Manga } from './schemas/manga';
 
 const router: Router = Router();
 
-router.get('/', (req, res) => {
-  Manga.find({}, (err, manga) => {
-    res.json(manga);
+router.get('/', async (req, res) => {
+  Manga.find({}, async (err, mangaList) => {
+    for (const manga of mangaList) {
+      const $ = cheerio.load(await Check.fetchSite(manga.url));
+      const chapterNumber = Check.parseMangaDexSite($).chapter;
+      if (chapterNumber !== manga.newestChapterNumber) {
+        manga.isNew = true;
+        manga.newestChapterNumber = chapterNumber;
+        // Manga.updateOne({ _id: manga._id }, manga);
+      }
+    }
+    res.json(mangaList);
   });
 });
 
@@ -21,30 +31,17 @@ router.post('/', (req, res) => {
     chapteAddedTime: req.body.chapteAddedTime,
     myActualChapterNumber: req.body.myActualChapterNumber,
   });
+
   manga.save().then(createdManga => {
-    res.status(201).json({
-      status: true,
-      mangaId: createdManga._id,
-    });
+    res.status(201).json({ status: true });
   });
 });
 
-// router.use('/', (req: Request, res: Response) => {
-//   console.log(req.body);
-//   res.send('test');
-
-
-  // const manga = new Manga({
-  //   name: 'One Punch Man',
-  //   url: 'https://mangadex.org/manga/7139/one-punch-man',
-  //   newestChapter: '1',
-  //   myActualChapter: '1',
-  // });
-  // manga.save().then(createdManga => {
-  //   res.status(200).send('');
-  // });
-  // const $ = cheerio.load(await Check.fetchSite('https://mangadex.org/manga/7139/one-punch-man'));
-  // res.send(Check.parseMangaDexSite($));
-// });
+router.delete('/:id', (req, res) => {
+  console.log(req.params.id);
+  Manga.deleteOne({ _id: req.params.id}, (err) => {
+    res.status(200).json({ status: true });
+  });
+});
 
 export const CrawlerController: Router = router;

@@ -1,7 +1,10 @@
 export interface Manga {
-  name: String;
-  url: String;
-  newestChapterNumber: String;
-  chapteAddedTime: String;
-  myActualChapterNumber: String;
+  id?: string;
+  name?: string;
+  url?: string;
+  newestChapterNumber?: string;
+  chapteAddedTime?: string;
+  myActualChapterNumber?: string;
+  isNewManga?: boolean;
+  language?: string;
 }
