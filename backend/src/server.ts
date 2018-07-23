@@ -47,7 +47,7 @@ export class Server {
   }
 
   private setMongoose() {
-    mongoose.connect('mongodb://localhost/fejku')
+    mongoose.connect('mongodb://localhost:27017/fejku', { useNewUrlParser: true })
       .then(() => {
         console.log('Connected to DB!');
       })

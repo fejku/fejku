@@ -1,15 +1,19 @@
 <div class="container-fluid">
-  <button class="btn btn-primary" *ngIf="!formularzWidoczny" (click)="formularzWidoczny = true">Dodaj nową mangę</button>
+  <button class="btn btn-primary" *ngIf="!formularzWidoczny" (click)="onDodajMange()">Dodaj nową mangę</button>
   <form *ngIf="formularzWidoczny">
     <div class="form-group">
       <label>Nazwa</label>
-      <input type="text" class="form-control" name="name" [(ngModel)]="manga.name">
+      <input type="text" class="form-control" name="name" [(ngModel)]="manga.name" placeholder="The Gamer">
     </div>
     <div class="form-group">
       <label>Url</label>
-      <input type="text" class="form-control" name="url" [(ngModel)]="manga.url">
+      <input type="text" class="form-control" name="url" [(ngModel)]="manga.url" placeholder="https://mangadex.org/manga/9967/the-gamer">
     </div>
-    <button type="submit" class="btn btn-primary" (click)="addNewManga()">Dodaj</button>
+    <div class="form-group">
+      <label>Aktualnie jestem na chapterze</label>
+      <input type="number" class="form-control" name="myActualChapterNumber" [(ngModel)]="manga.myActualChapterNumber" min="0">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="onSave()">{{tryb}}</button>
   </form>
 </div>
 <h2>Manga List</h2>
@@ -28,9 +32,9 @@
       <td>{{manga.name}}</td>
       <td>{{manga.newestChapterNumber}}</td>
       <td>{{manga.myActualChapterNumber}}</td>
-      <td><button>Odśwież</button></td>
-      <td><button>Edytuj</button></td>
-      <td><button (click)="onUsun(manga._id)">Usuń</button></td>
+      <td><button (click)="getMangaDetails(manga)">Odśwież</button></td>
+      <td><button (click)="onEdytujMange(manga)">Edytuj</button></td>
+      <td><button (click)="onUsunMange(manga.id)">Usuń</button></td>
     </tr>
   </tbody>
 </table>

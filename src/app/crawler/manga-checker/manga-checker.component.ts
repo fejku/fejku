@@ -10,6 +10,7 @@ import { Manga } from './manga.model';
 export class MangaCheckerComponent implements OnInit {
 
   formularzWidoczny = false;
+  tryb = '';
   mangaList: Manga[] = [];
   manga: Manga;
 
@@ -17,35 +18,59 @@ export class MangaCheckerComponent implements OnInit {
 
   ngOnInit() {
     this.manga = {
-      _id: null,
-      name: null,
-      url: null,
-      chapteAddedTime: null,
-      myActualChapterNumber: null,
-      newestChapterNumber: null
+      myActualChapterNumber: '0',
     };
 
     this.getMangaList();
   }
 
   addNewManga() {
-    this.formularzWidoczny = false;
-
     this.service.addManga(this.manga).subscribe(() => {
-      this.getMangaList();
+      // this.getMangaList();
+      this.mangaList.push(this.manga);
+      this.getMangaDetails(this.manga);
     });
   }
 
   getMangaList() {
     this.service.getMangaList().subscribe((data: Manga[]) => {
       this.mangaList = data;
+      this.mangaList.forEach(manga => {
+        this.getMangaDetails(manga);
+      });
     });
   }
 
-  onUsun(mangaId: string) {
+  getMangaDetails(manga: Manga) {
+    this.service.getChapterNumber(manga.id).subscribe((chapterNumner) => {
+      manga.newestChapterNumber = chapterNumner;
+    });
+  }
+
+  onDodajMange() {
+    this.formularzWidoczny = true;
+    this.tryb = 'Dodaj';
+  }
+
+  onEdytujMange(manga: Manga) {
+    this.formularzWidoczny = true;
+    this.tryb = 'Edytuj';
+    this.manga = manga;
+  }
+
+  onUsunMange(mangaId: string) {
     this.service.removeManga(mangaId).subscribe(() => {
       this.getMangaList();
     });
   }
 
+  onSave() {
+    this.formularzWidoczny = false;
+
+    if (this.tryb = 'Dodaj') {
+      this.addNewManga();
+    } else {
+      this.service.editManga(this.manga).subscribe();
+    }
+  }
 }

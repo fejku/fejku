@@ -1,0 +1,41 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Angular",
+      "type": "shell",
+      "command": "ng serve",
+      "group": "build",
+    },
+    {
+      "label": "TSC",
+      "type": "shell",
+      "command": "(cd backend && tsc -w)",
+      "group": "build",
+    },
+    {
+      "label": "Nodemon",
+      "type": "shell",
+      "command": "(cd backend/dist/backend/src && nodemon index.js)",
+      "group": "build",
+    },
+    {
+      "label": "MongoDB",
+      "type": "shell",
+      "windows": {
+        "command": "C:\\\"Program Files\"\\MongoDB\\Server\\3.6\\bin\\mongod.exe --dbpath d:\\My\\mongo\\data\\db\\",
+      },
+      "group": "build",
+    },
+    {
+      "label": "Build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": ["Run Angular", "TSC", "Nodemon", "MongoDB"]
+  }
+  ]
+}

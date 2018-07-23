@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Manga } from './manga.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Manga } from 'backend/src/crawler/schemas/manga';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +29,18 @@ export class MangaCheckerService {
     );
   }
 
+  getChapterNumber(mangaId: string): Observable<string> {
+    return this.http.get<{chapterNumber: string}>('http://localhost:3000/crawler/chaper-number/' + mangaId)
+      .pipe(
+        map(recivedData => recivedData.chapterNumber)
+      );
+  }
+
   removeManga(mangaId: string): Observable<{status: boolean}> {
     return this.http.delete<{status: boolean}>('http://localhost:3000/crawler/' + mangaId);
+  }
+
+  editManga(manga: Manga): Observable<Manga> {
+    return this.http.patch<Manga>('http://localhost:3000/crawler/chaper-number/' + manga.id, manga);
   }
 }
