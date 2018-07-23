@@ -25,8 +25,8 @@ export class MangaCheckerComponent implements OnInit {
   }
 
   addNewManga() {
-    this.service.addManga(this.manga).subscribe(() => {
-      // this.getMangaList();
+    this.service.addManga(this.manga).subscribe((respond) => {
+      this.manga.id = respond.mangaId;
       this.mangaList.push(this.manga);
       this.getMangaDetails(this.manga);
     });

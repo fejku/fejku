@@ -11,8 +11,8 @@ export class MangaCheckerService {
 
   constructor(private http: HttpClient) { }
 
-  addManga(manga: Manga): Observable<{status: boolean}> {
-    return this.http.post<{status: boolean}>('http://localhost:3000/crawler', manga);
+  addManga(manga: Manga): Observable<{status: boolean, mangaId: string }> {
+    return this.http.post<{ status: boolean, mangaId: string }>('http://localhost:3000/crawler', manga);
   }
 
   getMangaList(): Observable<Manga[]> {

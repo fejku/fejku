@@ -47,7 +47,7 @@ router.post('/', (req, res) => {
 
   manga.save()
     .then(createdManga => {
-      res.status(201).json({ status: true });
+      res.status(201).json({ status: true, mangaId: createdManga._id });
     })
     .catch(() => {
       res.status(404);
