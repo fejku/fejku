@@ -32,9 +32,21 @@
       <td>{{manga.name}}</td>
       <td>{{manga.newestChapterNumber}}</td>
       <td>{{manga.myActualChapterNumber}}</td>
-      <td><button (click)="getMangaDetails(manga)">Odśwież</button></td>
-      <td><button (click)="onEdytujMange(manga)">Edytuj</button></td>
-      <td><button (click)="onUsunMange(manga.id)">Usuń</button></td>
+      <td>
+        <button class="btn btn-default" (click)="getMangaDetails(manga)">
+          <i class="fas fa-sync-alt"></i>
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-default" (click)="onEdytujMange(manga)">
+          <i class="fas fa-pencil-alt"></i>
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-default" (click)="onUsunMange(manga.id)">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
